@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Search</title>
+</head>
+<body>
+    <h1>Book Search</h1>
+
+    <!-- Form to get user input -->
+    <form method="POST">
+        <label for="genre">Enter Genre:</label>
+        <input type="text" id="genre" name="genre" required><br><br>
+
+        <label for="number_of_searches">Number of Results:</label>
+        <input type="number" id="number_of_searches" name="number_of_searches" required><br><br>
+
+        <input type="submit" value="Search">
+    </form>
+
+    {% if genre %}
+        <h2>Results for "{{ genre }}"</h2>
+        {% if book_titles %}
+            <ul>
+                {% for title in book_titles %}
+                    <li>{{ title }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No books found for this genre.</p>
+        {% endif %}
+    {% endif %}
+
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+</body>
+</html>
